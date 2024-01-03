@@ -2,8 +2,8 @@
 @section('content')
     <div class="card">
         <div class="cardheader">
-            <h3 class="m-2 flex"> Book List</h3>
-            <div class="float-end me-5 flex">
+            <h3 class="m-2 flex float-start"> Book List</h3>
+            <div class="float-end me-5 flex ">
                 <form action="{{ route('books.index') }}" method="" class="form-inline">
 
                     <div class="form-group mx-2">
@@ -65,7 +65,7 @@
                                                 class="bi bi-trash"></i> Delete</button>
                                     @endcan
 
-                                    <a href="{{ route('export.books') }}" class="btn btn-success btn-sm"><i
+                                    <a href="{{ route('export.book', $book->id) }}" class="btn btn-success btn-sm"><i
                                             class="bi bi-file-excel"></i> Export Excel</a>
 
                                     @if ($book->pdf_file)
@@ -85,10 +85,6 @@
                             </span>
                         </td>
                     @endforelse
-
-
-
-
 
                 </tbody>
             </table>

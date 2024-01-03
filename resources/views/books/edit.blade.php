@@ -100,16 +100,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                    {{--
-                                    <div class="mb-3 row">
-                                        <label for="user_name"
-                                            class="col-md-4 col-form-label text-md-end text-start">User</label>
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" id="user_name"
-                                                value="{{ $user->name }}" readonly>
-                                            <input type="hidden" name="user_id" value="{{ $user->id }}">
-                                        </div>
-                                    </div> --}}
+
 
                                     <div class="mb-3 row">
                                         <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Update">

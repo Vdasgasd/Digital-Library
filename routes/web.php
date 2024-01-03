@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Exports\BooksExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 /*
@@ -32,12 +33,14 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::resources([
     'roles' => RoleController::class,
     'users' => UserController::class,
-    'products' => ProductController::class,
     'books' => BookController::class,
     'categories' => CategoryController::class,
 ]);
 
 
-Route::get('/export-books', function () {
-    return Excel::download(new BooksExport, 'books.xlsx');
-})->name('export.books');
+
+
+
+Route::get('/export-book/{bookId}', function ($bookId) {
+    return Excel::download(new BooksExport($bookId), 'Book_' . $bookId . '.xlsx');
+})->name('export.book');

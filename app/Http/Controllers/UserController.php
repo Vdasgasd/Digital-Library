@@ -52,7 +52,7 @@ class UserController extends Controller
         $input = $request->all();
         $input['password'] = Hash::make($request->password);
 
-        // $input['roles'] = $request->input('roles', 'pengguna');
+
         $user = User::create($input);
         $user->assignRole($request->roles);
 

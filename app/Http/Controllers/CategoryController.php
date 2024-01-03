@@ -34,11 +34,7 @@ class CategoryController extends Controller
         return view('categories.index', [
             'categories' => $categories
         ]);
-        // if ($user->isAdmin()) {
-        //     $categories = Category::latest()->paginate(3);
-        // } else {
-        //     $categories = Category::where('user_id', $user->id)->latest()->paginate(3);
-        // }
+
 
 
         return view('categories.index', compact('categories'));
@@ -64,10 +60,6 @@ class CategoryController extends Controller
     {
         Category::create(['name' => $request->name]);
 
-        // $permissions = Permission::whereIn('id', $request->permissions)->get(['name'])->toArray();
-
-        // $categories->syncPermissions($permissions);
-
         return redirect()->route('categories.index')
             ->withSuccess('New category is added successfully.');
     }
@@ -77,11 +69,7 @@ class CategoryController extends Controller
      */
     public function show(Category $categories): View
     {
-        // return view(
-        //     'categories.show',
-        //     ['category' => $categories],
-        //     compact('categories')
-        // );
+
         $user = Auth::user();
         return view('categories.show', [
             'category' => $categories, 'permissions' => Permission::get()

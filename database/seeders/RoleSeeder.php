@@ -21,9 +21,6 @@ class RoleSeeder extends Seeder
             'create-user',
             'edit-user',
             'delete-user',
-            'create-product',
-            'edit-product',
-            'delete-product',
             'create-category',
             'edit-category',
             'delete-category',
@@ -33,9 +30,6 @@ class RoleSeeder extends Seeder
         ]);
 
         $pengguna->givePermissionTo([
-            'create-product',
-            'edit-product',
-            'delete-product',
             'create-books',
             'edit-books',
             'delete-books'

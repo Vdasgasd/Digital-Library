@@ -30,28 +30,6 @@ class BookController extends Controller
     }
     public function index(Request $request): View
     {
-        // $user = Auth::user();
-        // $categories = Category::all();
-        // $selectedCategory = $request->input('category_filter');
-
-        // if ($user->isAdmin()) {
-        //     $book = Books::latest()->paginate(10);
-        // } else {
-        //     $book = Books::where('user_id', $user->id)->latest()->paginate(10);
-        // }
-
-
-        // if ($selectedCategory) {
-        //     $book->where('category_id', $selectedCategory);
-        // }
-
-        // // $book->paginate(10);
-
-
-        // return view('books.index', [
-        //     'books' => $book, 'categories' => $categories, 'user' => $user, 'permissions', 'selectedCategory'
-        // ]);
-
 
         $user = Auth::user();
         $categories = Category::all();
@@ -93,17 +71,9 @@ class BookController extends Controller
     {
 
 
-        // Books::create($request->all());
-        // return redirect()->route('books.index')
-        //     ->withSuccess('New book is added successfully.');
-
-        // $validatedData = $request->validated();
-
-        // // Create a new book
-        // $book = Books::create($validatedData->all());
-
         $user = Auth::user();
         $book = Books::create($request->all());
+
         // Create a folder for the book using its ID
         $folderPathPdf = 'public/pdf_files';
         Storage::makeDirectory($folderPathPdf);
@@ -123,7 +93,7 @@ class BookController extends Controller
             $book->update(['cover_image' => $coverImagePath]);
         }
 
-        // Redirect to the index page with success message
+
         return redirect()->route('books.index')->withSuccess('New book is added successfully.');
     }
 
@@ -132,13 +102,7 @@ class BookController extends Controller
      */
     public function show(Books $book): View
     {
-        // $user = Auth::user();
 
-        // if ($user->isAdmin() || $user->id === $book->user_id) {
-        //     return view('books.show', ['books' => $book]);
-        // } else {
-        //     return abort(403, 'Unauthorized action.');
-        // }
 
         return view('books.show', [
             'books' => $book
@@ -150,7 +114,7 @@ class BookController extends Controller
      */
     public function edit(Books $book): View
     {
-        $this->authorize('edit-books', $book); // Authorize the user to update the book
+        $this->authorize('edit-books', $book);
 
         $categories = Category::all();
         $user = Auth::user();
@@ -169,10 +133,7 @@ class BookController extends Controller
     public function update(UpdateBooksRequest $request, Books $book): RedirectResponse
     {
 
-        // $book->update($request->all());
 
-        // return redirect()->back()
-        //     ->withSuccess('Book is updated successfully.');
         $user = Auth::user();
         $book->update($request->all());
 
